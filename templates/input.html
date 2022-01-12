@@ -1,0 +1,108 @@
+<html>
+<head>
+    <title>Color Transfer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<div class="container"><br>
+    <div style="text-align: center;">
+        <h2>Перенос цвета с одной картинки на другую</h2>
+    </div>
+</div>
+
+<div class=container"><br>
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-4">
+            <br>
+            <label for="photo_to_color_transfer">
+                Вы можете также использовать Телеграм-бота по ссылке:
+            </label>
+            <a href="https://t.me/ColorTransferBot" class="link-primary">Telegram-bot for color transfer</a>
+            <form action="/transferDownload" method="post" role="form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <br>
+                    <label for="initial_photo">
+                        Выбрать метрику расстояний между изображениями:
+                    </label>
+                    <select name="metric" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <option value="quadratic">Квадратическая</option>
+                        <option value="linear">Линейная</option>
+                    </select>
+                    <label for="initial_photo">
+                        Фото, на которое переносим цвет:
+                    </label>
+                    <input type="file" name="initial_photo" class="form-control form-control-lg">
+                    <br>
+                    <label for="photo_to_color_transfer">
+                        Фото, с которого переносим цвет:
+                    </label>
+                    <input type="file" name="photo_to_color_transfer" class="form-control form-control-lg">
+                </div>
+                <br>
+                <div>Введите gmail почту для отправки обработанного фото:</div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                           name="Username">
+                    <span class="input-group-text">@</span>
+                    <input type="text" class="form-control" placeholder="Server" aria-label="Server" name="Server">
+                </div>
+                <br>
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-dark">
+                        Download
+                    </button>
+                    <button type="submit" class="btn btn-dark" formaction="/transfer">
+                        Transfer and show
+                    </button>
+                    <button type="submit" class="btn btn-dark" formaction="/transferSendEmail">
+                        Send by message
+                    </button>
+                </div>
+            </form>
+            {% if alert != "" %}
+                <div class="alert alert-dark" role="alert">
+                    {{ alert }}
+                </div>
+            {% endif %}
+            <br>
+
+
+            {#{% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                <strong>Success! </strong> {{ message[1] }}
+                </div>
+            {% endif %}
+
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-danger">
+                <strong>Error: </strong> {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}#}
+
+        </div>
+        <br>
+    </div>
+    {% if image != "empty" %}
+        <div style="text-align: center">
+            <img src="data:;base64,{{ image }}" style="max-width: 450px; max-height: 300px"
+                 class="rounded mx-auto d-block" alt="..."/>
+        </div>
+    {% endif %}
+
+</div>
+</body>
+</html>

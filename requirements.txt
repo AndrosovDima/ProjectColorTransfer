@@ -1,0 +1,8 @@
+flask==2.0.2
+flask_mail==0.9.1
+POT==0.8.0
+numpy==1.21.4
+matplotlib==3.5.1
+scikit-learn==1.0.1
+opencv-python==4.5.4.60
+pyTelegramBotAPI~=4.3.0

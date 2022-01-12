@@ -1,0 +1,20 @@
+version: '3'
+services:
+  flask:
+    build: .
+    container_name: color-transfer
+    environment:
+      - PYTHONUNBUFFERED=True
+    restart: on-failure
+    volumes:
+      - ./:/workdir
+    ports:
+      - "5000:5000"
+    command: python3 app.py
+  telebot:
+    build: .
+    container_name: telegram-bot
+    restart: on-failure
+    volumes:
+      - ./:/workdir
+    command: python3 ColorTransferBot.py
